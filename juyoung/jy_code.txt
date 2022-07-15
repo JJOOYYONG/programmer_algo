@@ -153,7 +153,63 @@ function solution(n) {
 정수를 저장한 배열, arr 에서 가장 작은 수를 제거한 배열을 리턴하는 함수, solution을 완성해주세요. 단, 리턴하려는 배열이 빈 배열인 경우엔 배열에 -1을 채워 리턴하세요. 예를들어 arr이 [4,3,2,1]인 경우는 [4,3,2]를 리턴 하고, [10]면 [-1]을 리턴 합니다.
 
 >코드
-
+function solution(arr) {
+    
+    const min_num = Math.min.apply(null,arr);    
+    const answer = arr.length ==1?[-1]:arr.filter((element) => element !== min_num);
+  
+   
+    return answer;
+}
 ........................................................
+#11.콜라츠 추측
 
+function solution(num) {
+    var answer = 0;
+    let result =0;
+    while(num != 1){
+        answer ++;
+        if(num%2 ==0){
+            num = num/2;
+        }else{
+            num = (num*3)+1;
+        }
+    }
+    if(answer >500){
+        answer = -1;
+    }
+    return answer;
+}
+............................................
+#12 하샤드 수
+function solution(x) {
+    var answer = true;
+    let x_sum = x.toString().split('').map(Number).reduce((a,b)=>a+b,0);
+    answer= x%x_sum==0?true:false;
+   
+    
+    return answer;
+}
+...........................................
+#13 3진법 뒤집기
+function solution(n) {
+    var answer = 0;
+    let num_txt =n.toString(3).split('').reverse().join('');
+    answer = parseInt(num_txt,3);
+    return answer;
+}
+...........................................
+#14
+...........................................
+#15 같은 숫자는 싫어
+function solution(arr)
+{
+    var answer = [];
+    let data;
+    for(let i=0;i<arr.length;i++){
+        if(arr[i] != arr[i+1]){
+            answer.push(arr[i]);  
+        }    
+    } 
+    return answer;
 }
