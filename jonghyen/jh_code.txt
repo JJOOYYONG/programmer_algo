@@ -1,1 +1,170 @@
-[1번 과제]
+#1 2016년
+
+function solution(a, b) {
+    const day = new Date(`${a} ${b}, 2016`);
+    const day_text = 'SUN,MON,TUE,WED,THU,FRI,SAT';
+    const day_list = day_text.split(',');
+    return day_list[day.getDay()]
+}
+---------------------------------------------------------------
+#2 나누어 떨어지는 숫자 배열
+
+function solution(arr, divisor) {
+    let answer = [ ];
+    arr.forEach((item) => {
+        if((item / divisor != 0) && (item % divisor == 0) ){
+             answer.push(item)
+        }
+    })
+    answer = (answer.length == 0) ? [-1] : answer 
+    return answer.sort((a, b) => a - b);
+}
+---------------------------------------------------------------
+#3 수박수박수박수박수박수?
+
+function solution(n) {
+    var answer = '';
+    if (n == 1){
+        answer = '수'
+    } else if (n%2 == 1 && n > 1){
+        answer = '수박'.repeat(n/2) + '수'
+    } else {
+        answer = '수박'.repeat(n/2)
+    }
+    return answer;
+}
+---------------------------------------------------------------
+#4 완주하지 못한 선수
+
+function solution(par, com) {
+    let answer = '';
+    par.sort();
+    com.sort();
+    console.log(par)
+    for(let i = 0; i < par.length; i++){
+        if(par[i] !== com[i]){
+            answer = par[i]
+            return answer
+        }
+    }
+    }
+---------------------------------------------------------------
+#5 이상한 문자 만들기
+function solution(s) {
+  return s
+    .split(" ")
+    .map((word) =>
+      word
+        .split("")
+        .map((char, index) =>
+          index % 2 === 0
+            ? word[index].toUpperCase()
+            : word[index].toLowerCase()
+        )
+        .join("")
+    )
+    .join(" ");
+}
+---------------------------------------------------------------
+#6 자릿수 더하기
+
+function solution(n)
+{
+    let answer = n.toString().split('').map(Number).reduce( (a,b) => a + b, 0)
+    return answer;
+}
+---------------------------------------------------------------
+#7 자연수 뒤집기
+
+function solution(n) {
+    var answer = n.toString().split('').reverse().map(Number);
+    
+    return answer;
+}
+
+---------------------------------------------------------------
+#8 정수 내림차순으로 배치하기
+
+function solution(n) {
+    var align = n.toString().split('').sort().reverse().join('');
+    let answer = parseInt(align)
+    return answer;
+}
+---------------------------------------------------------------
+#9 정수 제곱근 판별
+
+function solution(n) {
+    var answer = Number.isInteger(Math.sqrt(n))  ? (Math.sqrt(n) + 1) ** 2 : -1
+    return answer;
+}
+---------------------------------------------------------------
+#10 제일 작은 수 제거하기
+
+function solution(arr) {
+    arr.length != 1 ? arr.splice(arr.indexOf(Math.min(...arr)), 1) : arr = [-1] 
+    return arr;
+}
+---------------------------------------------------------------
+#11 콜라츠 추측
+
+function solution(num) {
+    let max_count = 500;
+    for (let i = 0; i<max_count ; i++){
+        if(num !== 1){
+            num = num % 2 === 0 ? num/2 : ((num*3) + 1)
+        } else {
+            return i;
+        }
+    }
+    let answer = num === 1 ? i : -1;
+    return answer
+}
+---------------------------------------------------------------
+#12 하샤드 수
+
+function solution(x) {
+    let sum = String(x).split('').map(Number).reduce((a,b) => a + b, 0)
+    let answer = x % sum == 0 ? true : false
+    //                       x % sum == 0 
+    return answer;
+}
+---------------------------------------------------------------
+#13 3진법 뒤집기
+
+function solution(n) {
+    let answer = parseInt(n.toString(3).split('').reverse().join(''), 3)
+    return answer;
+}
+---------------------------------------------------------------
+#14 최소 직사각형
+
+function solution(sizes) {
+    let row_length = [];
+    let column_length = [];
+    sizes.forEach((item) => {
+        row_length.push(item.sort((a,b) => a - b)[0]);
+        column_length.push(item.sort((a,b) => a - b)[1]);
+    })
+    let answer = Math.max(...row_length) * Math.max(...column_length)
+    return answer;
+}
+---------------------------------------------------------------
+#15 같은 숫자는 싫어 
+
+function solution(arr){
+    let answer =[];
+    answer = arr.filter((value, index) => value !== arr[index + 1])
+    return answer
+}
+
+
+
+
+
+
+
+
+
+
+
+
