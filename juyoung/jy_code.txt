@@ -1,1 +1,159 @@
-[1번 과제]
+[1번 문제]
+2016년 1월 1일은 금요일입니다. 2016년 a월 b일은 무슨 요일일까요? 두 수 a ,b를 입력받아 2016년 a월 b일이 무슨 요일인지 리턴하는 함수, solution을 완성하세요. 요일의 이름은 일요일부터 토요일까지 각각 SUN,MON,TUE,WED,THU,FRI,SAT
+
+입니다. 예를 들어 a=5, b=24라면 5월 24일은 화요일이므로 문자열 "TUE"를 반환하세요.
+
+>코드
+function solution(a, b) {
+    const week = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+    const date = new Date(`2016-${a}-${b}`);
+    // const date = new Date('2016-'+a+'-'+b)
+    
+    const answer = week[date.getDay()];
+    return answer;
+}
+
+........................................................
+
+[2번 문제]
+array의 각 element 중 divisor로 나누어 떨어지는 값을 오름차순으로 정렬한 배열을 반환하는 함수, solution을 작성해주세요.
+divisor로 나누어 떨어지는 element가 하나도 없다면 배열에 -1을 담아 반환하세요.
+
+>코드
+function solution(arr, divisor) {
+    //결과값 배열
+    var answer = [];
+    //나누기
+    for(let i=0;i<arr.length;i++){
+        //나머지 도출
+        const cal = arr[i]%divisor;
+        //나머지가 0인 element만 결과 배열에 담기(결과값은 빈값 반환)
+        if(cal == 0){
+            answer.push(arr[i]);
+        }
+    }
+    //삼항연산자로 결과 배열길이 비교하여 비어있다면 -1/ 있다면 오름차순 정렬 하여 결과 도출
+    //sort()는 문자열로 비교하므로 숫자비교시 아래와 같이 처리해야함
+    const result = answer.length == 0?[-1]:answer.sort(function(a,b){return a-b;})
+    return result;
+}
+
+........................................................
+
+[3번 문제]
+길이가 n이고, "수박수박수박수...."와 같은 패턴을 유지하는 문자열을 리턴하는 함수, solution을 완성하세요. 예를들어 n이 4이면 "수박수박"을 리턴하고 3이라면 "수박수"를 리턴하면 됩니다.
+
+>코드
+function solution(n) {
+    var answer = '';
+    
+    for (let i = 0; i < n; i++) {         
+        answer += i % 2 === 0 ? "수":"박";  
+                                    
+    }
+    return answer;
+}
+........................................................
+[4번 문제]
+수많은 마라톤 선수들이 마라톤에 참여하였습니다. 단 한 명의 선수를 제외하고는 모든 선수가 마라톤을 완주하였습니다.
+
+마라톤에 참여한 선수들의 이름이 담긴 배열 participant와 완주한 선수들의 이름이 담긴 배열 completion이 주어질 때, 완주하지 못한 선수의 이름을 return 하도록 solution 함수를 작성해주세요.
+
+>코드
+function solution(participant, completion) {
+    participant.sort();
+    completion.sort();
+    for(let i=0;i<participant.length;i++){
+        if(participant[i]!==completion[i]){
+            return participant[i];
+        }
+    }
+}
+........................................................
+[5번 문제]
+문자열 s는 한 개 이상의 단어로 구성되어 있습니다. 각 단어는 하나 이상의 공백문자로 구분되어 있습니다. 각 단어의 짝수번째 알파벳은 대문자로, 홀수번째 알파벳은 소문자로 바꾼 문자열을 리턴하는 함수, solution을 완성하세요.
+>코드
+function solution(s) {
+    let text = s.split(' ');
+    let num = s.length;
+    let new_text=''
+    let answer=[];
+    
+    text.map(item=>{
+        for(let i=0;i<item.length;i++){
+            new_text += i%2==0?item[i].toUpperCase():item[i].toLowerCase();
+        }
+        answer.push(new_text);
+        new_text ='';
+    });
+   
+    return answer.join(' ');
+}
+........................................................
+[6번 문제]
+자연수 N이 주어지면, N의 각 자릿수의 합을 구해서 return 하는 solution 함수를 만들어 주세요.
+예를들어 N = 123이면 1 + 2 + 3 = 6을 return 하면 됩니다.
+
+>코드
+function solution(n)
+{
+    const change_str = String(n);  
+    console.log(n[0]);
+    var answer = 0;
+    for(let i =0;i<change_str.length;i++){
+        
+        answer += parseInt(change_str.charAt(i));
+    }
+    // [실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
+    
+
+     return answer;
+}................................................
+[7번 문제]
+자연수 n을 뒤집어 각 자리 숫자를 원소로 가지는 배열 형태로 리턴해주세요. 예를들어 n이 12345이면 [5,4,3,2,1]을 리턴합니다.
+
+>코드
+function solution(n) {
+    var answer = [];
+    const num = n.toString().split("").sort((a,b)=>b-a).join("");
+    for(let i=0;i<num.length;i++){
+        let data = Number(num.charAt(i));
+        answer.push(data);
+    }
+    return answer;
+}
+........................................................
+[8번 문제]
+함수 solution은 정수 n을 매개변수로 입력받습니다. n의 각 자릿수를 큰것부터 작은 순으로 정렬한 새로운 정수를 리턴해주세요. 예를들어 n이 118372면 873211을 리턴하면 됩니다.
+
+>코드
+function solution(n) {
+    
+    var answer = 0;
+    answer = Number((n.toString().split("").sort((a,b)=>b-a).join("")));
+    return answer;
+}
+........................................................
+[9번 문제]
+임의의 양의 정수 n에 대해, n이 어떤 양의 정수 x의 제곱인지 아닌지 판단하려 합니다.
+n이 양의 정수 x의 제곱이라면 x+1의 제곱을 리턴하고, n이 양의 정수 x의 제곱이 아니라면 -1을 리턴하는 함수를 완성하세요.
+
+>코드
+function solution(n) {
+    var answer = 0;
+    //루트값 구하기
+    let root = Math.sqrt(n);
+    //정수,실수 판별
+    answer= Number.isInteger(root)?(root+1) ** 2: -1
+
+    return answer;
+}
+........................................................
+[10번 문제]
+정수를 저장한 배열, arr 에서 가장 작은 수를 제거한 배열을 리턴하는 함수, solution을 완성해주세요. 단, 리턴하려는 배열이 빈 배열인 경우엔 배열에 -1을 채워 리턴하세요. 예를들어 arr이 [4,3,2,1]인 경우는 [4,3,2]를 리턴 하고, [10]면 [-1]을 리턴 합니다.
+
+>코드
+
+........................................................
+
+}
