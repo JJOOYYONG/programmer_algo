@@ -157,6 +157,44 @@ function solution(arr){
     return answer
 }
 
+---------------------------------------------------------------
+#16 두 개 뽑아서 더하기
+
+function solution(numbers) {
+    let answer = [];
+    for (let i = 0; i<numbers.length; i++){
+        for(let j = 0; j<numbers.length; j++){
+            if(i !== j){
+                answer.push(numbers[i] + numbers[j])
+            }
+        }        
+    }
+    let result1 = new Set(answer)
+    let result = [...result1]
+    return result.sort((a,b) => a-b);
+}
+
+---------------------------------------------------------------
+#17 로또의 최고순위와 최저순위
+
+function solution(lottos, win_nums) {
+    var answer = [];
+    let result1 = [];
+    let result2 = [];
+    // 0과 mnum을 포함하는 배열 = result1
+    lottos.forEach((mnum) => {
+        if((win_nums.includes(mnum)) || (mnum == 0)){
+            result1.push(mnum)
+        }
+    });
+    // result1에서 0의 개수를 뺀 배열 result2
+    result2 = result1.filter(n => n != 0);
+    result1 = result1.length == 0 ? 1 : result1.length;
+    result2 = result2.length == 0 ? 1 : result2.length;
+    answer = [7 - result1, 7 -result2];
+    
+    return answer;
+}
 
 
 
