@@ -270,3 +270,139 @@ function solution(arr) {
 }
 
 -----------------------------------------------------------------------------------
+
+Q16. 두 개 뽑아서 더하기 / https://school.programmers.co.kr/learn/courses/30/lessons/68644
+
+function solution(numbers) {
+    let arr = [];
+
+    for (let i = 0; i < numbers.length; i++) {
+
+      for (let j = 0; j < numbers.length; j++) {
+
+        if ( numbers[i + j + 1] == numbers[numbers.length] ) continue;
+
+        let result = numbers[i] + numbers[i + j + 1];
+        arr.push(result);
+
+      };
+
+    };
+
+    let answer = Array.from(new Set(arr)).sort((a, b) => a - b);
+    
+    return answer;
+}
+
+-----------------------------------------------------------------------------------
+
+Q17. 로또의 최고 순위와 최저 순위 / https://school.programmers.co.kr/learn/courses/30/lessons/77484
+
+function solution(lottos, win_nums) {
+    let ranking = [6, 6, 5, 4, 3, 2, 1];
+
+    let getRight = lottos.filter(x => win_nums.includes(x));
+
+    let zero = lottos.filter(x => x == 0); 
+
+    let answer = [ranking[getRight.length + zero.length], ranking[getRight.length]];
+    
+    return answer;
+}
+
+-----------------------------------------------------------------------------------
+
+Q18. 모의고사 / https://school.programmers.co.kr/learn/courses/30/lessons/42840
+
+
+function solution(numbers) {
+    var answer = [];
+    
+    let supoja1 = '12345'.repeat(Math.ceil(numbers.length / 5)).split("");
+    let supoja2 = '21232425'.repeat(Math.ceil(numbers.length / 8)).split("");
+    let supoja3 = '3311224455'.repeat(Math.ceil(numbers.length / 10)).split("");
+
+    let result = [0, 0, 0];
+
+    for(let i = 0; i < numbers.length; i++){
+      if (supoja1[i] == numbers[i]) {result[0]++};
+      if (supoja2[i] == numbers[i]) {result[1]++};
+      if (supoja3[i] == numbers[i]) {result[2]++};
+    }
+
+    if (result[0] >= result[1] && result[0] >= result[2]) {answer.push(1)};
+    if (result[1] >= result[2] && result[1] >= result[0]) {answer.push(2)};
+    if (result[2] >= result[0] && result[2] >= result[1]) {answer.push(3)};
+    
+    return answer;
+}
+
+-----------------------------------------------------------------------------------
+
+Q19. 문자열 내 마음대로 정렬하기 / https://school.programmers.co.kr/learn/courses/30/lessons/12915
+
+function solution(strings, n) {
+    
+    let answer = strings.sort(function(a, b){
+
+      let word1 = a[n];
+      let word2 = b[n];
+
+      if (word1 < word2) {return -1;}
+      if (word1 > word2) {return 1;}
+
+      if (word1 == word2) {
+          if (a < b) {return -1;}
+          if (a > b) {return 1;}
+      }
+
+    })
+    
+    return answer;
+}
+
+-----------------------------------------------------------------------------------
+
+Q20. 문자열 내림차순으로 배치하기 / https://school.programmers.co.kr/learn/courses/30/lessons/12917
+
+function solution(s) {
+    
+    let answer = s.split("").sort().reverse().join("");
+    
+    return answer;
+}
+
+-----------------------------------------------------------------------------------
+
+Q21. 소수 만들기 / https://school.programmers.co.kr/learn/courses/30/lessons/12977
+
+function solution(nums) {
+    let answer = [];
+
+    function isPrime(num) {
+      for(let i = 2; i < num; i++) {
+      if(num % i === 0) {
+        return false;
+       }
+      }
+     return true;
+    }
+
+    for (let i = 0; i < nums.length; i++) {
+
+      for (let j = i+1; j < nums.length; j++) {
+
+        for (let k = j+1; k < nums.length; k++) {
+
+          if ( isPrime(nums[i] + nums[j] + nums[k]) == true) {
+            answer.push(nums[i] + nums[j] + nums[k]);
+          }
+
+        }
+
+      }
+
+    }
+    
+    return answer.length;
+}
