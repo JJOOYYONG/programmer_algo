@@ -157,6 +157,7 @@ function solution(arr){
     return answer
 }
 
+
 ---------------------------------------------------------------
 #16 두 개 뽑아서 더하기
 
@@ -174,6 +175,7 @@ function solution(numbers) {
     return result.sort((a,b) => a-b);
 }
 
+Array.from(obj) -> array로 바꿔줌 !
 ---------------------------------------------------------------
 #17 로또의 최고순위와 최저순위
 
@@ -195,11 +197,52 @@ function solution(lottos, win_nums) {
     
     return answer;
 }
+---------------------------------------------------------------
+#18 모의고사
 
+function solution(answers) {
+    let answer = [];
+    let fgm1 = [1, 2, 3, 4, 5].join('').repeat(Math.ceil(answers.length/5))
+    let fgm2 = [2, 1, 2, 3, 2, 4, 2, 5].join('').repeat(Math.ceil(answers.length/8))
+    let fgm3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5].join('').repeat(Math.ceil(answers.length/10))
+    let math1 = 0;
+    let math2 = 0;
+    let math3 = 0;
+    for (let i =0; i< answers.length; i++){
+        if(fgm1[i] == answers[i]){math1++}
+        if(fgm2[i] == answers[i]){math2++}
+        if(fgm3[i] == answers[i]){math3++}
+        }
+    let scoreBox = [math1, math2, math3];
+    let max = Math.max(...scoreBox)
 
+    if(max == math1){answer.push(1)}
+    if(max == math2){answer.push(2)}
+    if(max == math3){answer.push(3)}
 
+    return answer
 
+    }
+---------------------------------------------------------------
+#18 모의고사
 
+function solution(strings, n) {
+    let answer = strings.map((value) => value[n]).sort()
+    // ["a","e","u"]
+    let result = [];
+    result = answer.map((s) => strings.filter((word) => s == word[n])).map((arr) => arr.sort()).flat()
+    // [["car"],["bed"],["sun"]], [["abce","abcd"],["abce","abcd"],["cdx"]]
+    // 이중 배열 안에 있는 배열을 정렬하기 위해 sort 한 후 flat
+    answer = [...new Set(result)]
+    return answer
+}
+---------------------------------------------------------------
+#19 문자열 내림차순으로 배치하기
+
+function solution(s) {
+    let answer = s.split('').sort().reverse().join('')
+    return answer;
+}
 
 
 
