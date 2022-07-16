@@ -213,3 +213,151 @@ function solution(arr)
     } 
     return answer;
 }
+..............................................
+#16 두 개 뽑아서 더하기
+function solution(numbers) {
+  const temp = []
+
+for (let i = 0; i < numbers.length; i++) {
+  for (let j = i + 1; j < numbers.length; j++) {
+      temp.push(numbers[i] + numbers[j]) }
+    } 
+const answer = [...new Set(temp)] 
+return answer.sort((a, b) => a - b)
+
+}
+.............................................
+#17 로또순위
+function solution(lottos, win_nums) {
+    var answer = [];
+    
+    //맞은 갯수
+    let result = lottos.filter(a=>win_nums.includes(a)).length;
+    //0인 갯수
+    const zeros = lottos.filter(a => a === 0).length;
+    
+    //최저 순위
+    let min = 7-result >= 6 ? 6 : 7-result;
+    //최고 순위
+    let max = min-zeros < 1 ? 1 : min-zeros;
+    
+    answer = [max, min]
+
+   
+    return answer;
+}
+..............................................
+#18 모의고사
+
+function solution(answers) {
+     var answer = [];
+    //학생별 답안 패턴
+    const student_1 = [1,2,3,4,5];
+    const student_2 = [2,1,2,3,2,4,2,5];
+    const student_3 = [3,3,1,1,2,2,4,4,5,5];
+    
+    let result = answers.filter((a,i)=>a===student_1[i%student_1.length]).length;
+    let result2 = answers.filter((a,i)=>a===student_2[i%student_2.length]).length;
+    let result3 = answers.filter((a,i)=>a===student_3[i%student_3.length]).length;
+    let max = Math.max(result,result2,result3);
+   console.log(max)
+    if (result === max) {answer.push(1)};
+    if (result2 === max) {answer.push(2)};
+    if (result3 === max) {answer.push(3)};
+   
+
+    return answer;
+}
+.............................................
+#19 문자열 정리
+function solution(strings, n) {
+    var answer = [];
+   
+    let data = strings.map((item)=>item.charAt(n));
+    for(let i=0;i<strings.length;i++){
+        strings[i] = data[i]+strings[i];
+    }
+    
+    strings.sort();
+    data.sort();
+    for(let j=0;j<strings.length;j++){
+        strings[j] = strings[j].replace(data[j],"");
+    }
+    
+    answer = strings;
+    return answer;
+}
+..............................................
+#20 문자열 내림차순 배치하기
+function solution(s) {
+    var answer = '';
+    answer= s.split('').sort().reverse().join("");
+    return answer;
+}
+..............................................
+#21 소수 만들기
+function solution(nums) {
+    var answer=0;
+    let len = nums.length;
+    let data=[];
+    //배열 내 합 경우의 수 구하기기
+    for(let i=0;i<len;i++){
+        for(let j=i+1;j<len;j++){
+            for(let k=j+1;k<len;k++){
+                if(primaryNum(nums[i]+nums[j]+nums[k])){
+                    answer +=1;
+                };
+            }
+        }
+    }
+
+    return answer;
+}
+//소수 검사
+function primaryNum(num){
+    let divisor = 2;
+         while(num>divisor){
+             if(num%divisor ==0){
+                 return false; // 나눠지면 소수아님
+             }else{
+                 divisor++;
+             }
+         }
+        return true;
+}
+ver2)
+function solution(nums) {
+    var answer;
+    let len = nums.length;
+    let data=[];
+    //배열 내 합 경우의 수 구후ㅏ기
+    for(let i=0;i<len;i++){
+        for(let j=i+1;j<len;j++){
+            for(let k=j+1;k<len;k++){
+                data.push(nums[i]+nums[j]+nums[k]);
+            }
+        }
+    }
+    //map으로 소수 검사 (item 은 2 이상 자기자신 이하로 나눠짐)
+    //reduce로 배열내 중복 개수 구하기
+    let result = data.map((item)=>{
+         let divisor = 2;
+         while(item>divisor){
+             if(item%divisor ==0){
+                 return false; // 나눠지면 소수아님
+             }else{
+                 divisor++;
+             }
+         }
+        return true;
+    }).reduce((accu,curr)=>{
+       accu[curr] = (accu[curr] || 0)+1; 
+       return accu;
+    },{});
+
+
+    answer=result['true']    
+    
+    return answer;
+}
+...............................................
