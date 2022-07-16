@@ -1,0 +1,272 @@
+Q1. 2016년 / https://school.programmers.co.kr/learn/courses/30/lessons/12901
+
+function solution(a, b) {
+    var answer = '';
+    
+    let count = -1;
+
+const monthArray = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+const weeksArray = ["FRI", "SAT", "SUN", "MON", "TUE", "WED", "THU"];
+
+
+for(let i = 0; i < a-1; i++) {
+  count += monthArray[i];
+};
+
+count += Number(b);
+
+let day = count % 7;
+answer = weeksArray[day];
+    
+    return answer;
+}
+
+-----------------------------------------------------------------------------------
+
+Q2. 나누어 떨어지는 숫자 배열 / https://school.programmers.co.kr/learn/courses/30/lessons/12910
+
+function solution(arr, divisor) {
+    var answer = [];
+    
+    let newArr = arr.filter(item => item%divisor == 0).sort( (a, b) => a - b );
+
+    answer = (newArr.length == 0) ? [-1] : newArr;
+    
+    return answer;
+}
+
+-----------------------------------------------------------------------------------
+
+Q3. 수박수박수박수박수박수? / https://school.programmers.co.kr/learn/courses/30/lessons/12922
+
+function solution(n) {
+    var answer = '';
+    
+    let text = "수박";
+    let n2 = Math.ceil(n/2);
+
+    answer = text.repeat(n2).slice(0, n);
+    
+    return answer;
+}
+
+-----------------------------------------------------------------------------------
+
+Q4. 완주하지 못한 선수 / https://school.programmers.co.kr/learn/courses/30/lessons/42576
+
+function solution(participant, completion) {
+    var answer = '';
+    
+    participant.sort();
+    completion.sort();
+
+    for(let i=0; i<participant.length; i++) {
+        if (participant[i] !== completion[i]) {
+
+        answer = participant[i];
+        break;
+        }
+
+    }
+    
+    return answer;
+}
+
+-----------------------------------------------------------------------------------
+
+Q5. 이상한 문자 만들기 / https://school.programmers.co.kr/learn/courses/30/lessons/12930
+
+function solution(s) {
+    var answer = '';
+    
+    let arr = s.split(" ");
+
+    for(let i=0; i < arr.length; i++) {
+
+      for(let j=0; j <arr[i].length; j++) {
+        if(j % 2 == 0) {
+          answer += arr[i][j].toUpperCase()
+        } else {
+          answer += arr[i][j].toLowerCase()
+        }
+      }
+
+      if(i < arr.length - 1) {
+        answer += " ";
+      }
+
+    }
+
+    
+    return answer;
+}
+
+-----------------------------------------------------------------------------------
+
+Q6. 자릿수 더하기 / https://school.programmers.co.kr/learn/courses/30/lessons/12931
+
+function solution(n) {
+    var answer = 0;
+
+    answer = String(n).split("").map(Number).reduce((sum, current) => sum + current, 0);
+
+    return answer;
+}
+
+-----------------------------------------------------------------------------------
+
+Q7. 자연수 뒤집어 배열로 만들기 / https://school.programmers.co.kr/learn/courses/30/lessons/12932
+
+function solution(n) {
+    var answer = [];
+    
+    answer = String(n).split("").map(Number).reverse();
+    
+    return answer;
+}
+
+-----------------------------------------------------------------------------------
+
+Q8. 정수 내림차순으로 배치하기 / https://school.programmers.co.kr/learn/courses/30/lessons/12933
+
+function solution(n) {
+    var answer = 0;
+    
+    answer = String(n).split("").sort( (a, b) => b - a ).join("");
+    
+    return Number(answer);
+}
+
+-----------------------------------------------------------------------------------
+
+Q9. 정수 제곱근 판별 / https://school.programmers.co.kr/learn/courses/30/lessons/12934
+
+function solution(n) {
+    var answer = 0;
+    
+    answer = (Math.sqrt(n) % 1 == 0) ? Math.pow((Math.sqrt(n) + 1), 2) : -1;
+    
+    return answer;
+}
+
+-----------------------------------------------------------------------------------
+
+Q10. 제일 작은 수 제거하기 / https://school.programmers.co.kr/learn/courses/30/lessons/12935
+
+function solution(arr) {
+    var answer = [];
+    
+    let min = Math.min(...arr);
+
+    arr.splice(arr.indexOf(min), 1);
+
+    answer = (arr.length !== 0) ? arr : [-1];
+    
+    return answer;
+}
+
+-----------------------------------------------------------------------------------
+
+Q11. 콜라츠 추측 / https://school.programmers.co.kr/learn/courses/30/lessons/12943
+
+function solution(num) {
+    var answer = 0;
+    
+    while (true) {
+
+      if (num == 1) break;
+
+      if (num % 2 == 0) {
+        num = num/2;
+      } else {
+        num = num * 3 + 1;
+      }
+
+      answer += 1;
+
+    }
+    
+    return answer = (answer <= 500) ? answer : -1;
+}
+
+-----------------------------------------------------------------------------------
+
+Q12. 하샤드 수 / https://school.programmers.co.kr/learn/courses/30/lessons/12947
+
+function solution(x) {
+    var answer = true;
+    
+    let sum = String(x).split("").map(Number).reduce((sum, current) =>sum + current, 0);
+
+    answer = (x % sum == 0) ? true : false;
+    
+    return answer;
+}
+
+-----------------------------------------------------------------------------------
+
+Q13. 3진법 뒤집기 / https://school.programmers.co.kr/learn/courses/30/lessons/68935
+
+function solution(n) {
+    var answer = 0;
+    
+    num = n.toString(3).split("").reverse().join("");
+
+    answer = Number.parseInt(num, 3);
+    
+    return answer;
+}
+
+-----------------------------------------------------------------------------------
+
+Q14. 최소직사각형 / https://school.programmers.co.kr/learn/courses/30/lessons/86491
+
+function solution(sizes) {
+    var answer = 0;
+    
+    let left = [];
+    let right = [];
+
+    for (let i = 0; i < sizes.length; i++) {
+
+      let width = sizes[i][0];
+      let height = sizes[i][1];
+
+      if ( width >= height ){
+        left.push(width);
+        right.push(height);
+      } else {
+        left.push(height);
+        right.push(width);
+      }
+
+    }
+
+    left.sort( (a, b) => b - a );
+    right.sort( (a, b) => b - a );
+
+    answer = (left.shift() * right.shift());
+    
+    return answer;
+} 
+
+-----------------------------------------------------------------------------------
+
+Q15. 같은 숫자는 싫어 / https://school.programmers.co.kr/learn/courses/30/lessons/12906
+
+function solution(arr) {
+    
+    var answer = [];
+
+    for(let i = 0; i < arr.length; i++) {
+
+        if ( arr[i] !== arr[i+1] ) {
+            answer.push(arr[i]);
+        }
+
+    }
+    
+    return answer;
+}
+
+-----------------------------------------------------------------------------------
