@@ -450,3 +450,88 @@ function solution(new_id) {
     
     return answer;
 }
+................
+#25 약수의 개수 와 덧셈
+function solution(left, right) {
+    let answer = 0;
+    for(let i = left; i <= right; i++) {
+        let array = [];
+        for(let j = 1; j <= i; j++) {
+            if(i % j === 0) {
+                array.push(j);
+            }
+        }
+        array.length % 2 === 0 ? answer += i : answer -= i;
+    }
+    return answer;
+}
+...............
+#26 약수의 합
+function solution(n) {
+    var answer = 0;
+    let data=[];
+    if(0>n<=3000){
+        for(let i =1;i<=n;i++){
+            if(n%i ==0) answer+=i;
+        }    
+    }
+    return answer;
+}
+.................
+#27 
+function solution(d, budget) {
+    var answer = 0;
+    d.sort((a,b)=>a-b);
+    while(d.reduce((a,b)=>(a+b),0)>budget){
+       d.pop();
+    }
+    answer = d.length;
+    return answer;
+}
+................
+#28 최대 공약수와 최소 공배수
+function solution(n, m) {
+    var answer = [];
+    let min_num = Math.min(n);
+    let max_num = Math.max(m);
+    
+    answer[0]=gcd(min_num,max_num);
+    answer[1]=lcm(min_num,max_num);
+    
+    return answer;
+}
+
+    // 최대공약수
+    function gcd(minNum, maxNum){
+      return (minNum % maxNum) === 0 ? maxNum : gcd(maxNum, minNum % maxNum);
+    }
+    //최소공배수
+    function lcm(minNum, maxNum){
+      return minNum * maxNum / gcd(minNum, maxNum);
+    }
+.......................
+#29 k번째 배수
+function solution(array, commands) {
+    var answer = [];
+    let answers = array;
+    commands.forEach(item=>{
+        let i = item[0]-1;
+        let j = item[1];
+        answers = array.slice(i,j).sort((a,b)=>a-b);
+        let k = item[2]-1;
+        answer.push(answers[k]);
+    })
+    
+    return answer;
+}
+.......................
+#30 나머지가 1이 되는 수 찾기
+function solution(n) {
+    var answer = 0;
+    let data=[];
+    for(let i=0;i<=n;i++){
+        if(n%i == 1) data.push(i);
+    }
+    answer = data.reduce((a,b)=> Math.min(a,b));
+    return answer;
+}
