@@ -461,7 +461,7 @@ function solution(s, n) {
 
 -----------------------------------------------------------------------------------
 
-Q24. 신규 아이디 추천
+Q24. 신규 아이디 추천 / https://school.programmers.co.kr/learn/courses/30/lessons/72410
 
 function solution(new_id) {
     
@@ -495,3 +495,132 @@ function solution(new_id) {
 }
 
 -----------------------------------------------------------------------------------
+
+Q25. 약수의 개수와 덧셈 https://school.programmers.co.kr/learn/courses/30/lessons/77884
+
+function solution(left, right) {
+    let answer = 0;
+    
+    for (let i = left; i <= right; i++) {
+      if ( Math.sqrt(i) % 1 !== 0 ) {
+        answer += i;
+      } else {
+        answer -= i;
+      }
+    }
+    
+    return answer;
+}
+
+-----------------------------------------------------------------------------------
+
+Q26. 약수의 합 / https://school.programmers.co.kr/learn/courses/30/lessons/12928
+
+function solution(n) {
+    let answer = 0;
+
+    for (let i = 1; i <= n; i++) {
+      if(n % i === 0) {
+        answer = answer + i;
+      }
+    }
+    
+    return answer;
+}
+
+-----------------------------------------------------------------------------------
+
+Q27. 예산 / https://school.programmers.co.kr/learn/courses/30/lessons/12982
+
+function solution(d, budget) {
+    let dSum = d.reduce((s, c) => s + c, 0);
+
+    let dLength = d.length;
+
+    for(let i = 0; i < dLength; i++) {
+      if (dSum <= budget) break;
+
+      if (dSum > budget) {
+        dSum -= d.splice(d.indexOf(Math.max(...d)), 1);
+      }
+    }
+    
+    return d.length;
+}
+
+-----------------------------------------------------------------------------------
+
+Q28. 최대공약수와 최소공배수 / https://school.programmers.co.kr/learn/courses/30/lessons/12940
+
+function solution(n, m) {
+    // 최대공약수 greatest common divisor
+    // 최소공배수 largest common multiple
+
+    // 최대공약수 구하기
+    let nGcd = [];
+    let mGcd = [];
+
+    for (let i = 1; i <= n; i++) {
+      if (n % i == 0) {nGcd.push(i)};
+    }
+
+    for (let i = 1; i <= m; i++) {
+      if (m % i == 0) {mGcd.push(i)};
+    }
+
+    let gcd = nGcd.filter(i => mGcd.includes(i)).slice(-1).join(); 
+
+    // 최소공배수 구하기
+    let nLCM = [];
+    let mLCM = [];
+
+    let i = 1;
+
+    while (true) {
+      nLCM.push(n*i);
+      mLCM.push(m*i);
+      if (n*i >= n*m && m*i >= n*m) break;
+      i++;
+    }
+
+    let lcm = nLCM.filter(i => mLCM.includes(i))[0];
+    
+    return [+gcd, lcm];
+}
+
+-----------------------------------------------------------------------------------
+
+Q29. K번째수 / https://school.programmers.co.kr/learn/courses/30/lessons/42748
+
+function solution(array, commands) {
+    let answer = [];
+
+    for(let i = 0; i < commands.length; i++) {
+
+      let nums = commands[i];
+
+      answer.push(
+        array.slice((nums[0])-1, nums[1])
+        .sort((a,b)=>a-b)
+        .splice((nums[2])-1, 1));
+
+    }
+
+    console.log(answer);
+    
+    return answer.flat();
+}
+
+-----------------------------------------------------------------------------------
+
+Q30. 나머지가 1이 되는 수 찾기 / https://school.programmers.co.kr/learn/courses/30/lessons/87389
+
+function solution(n) {
+
+    for (let i = 2; i <= n-1; i++) {
+      if ((n-1) % i == 0) {
+        return i;
+      }
+    }
+    
+}
