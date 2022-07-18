@@ -244,8 +244,62 @@ function solution(s) {
     return answer;
 }
 
+---------------------------------------------------------------
+#20 문자열 내림차순으로 배치하기
 
+function solution(s) {
+    let answer = s.split('').sort().reverse().join('')
+    return answer;
+}
 
+---------------------------------------------------------------
+#21 소수만들기(다시)
 
+---------------------------------------------------------------
+#22 숫자 문자열과 영단어
+
+function solution(s) {
+    let word = ['zero','one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
+    for(let i = 0; i < word.length; i++){
+        if(s.indexOf(word[i]) !== -1){
+            s = s.split(word[i]).join(i)
+        }
+    }
+    return Number(s)
+}
+
+---------------------------------------------------------------
+#23 시저암호
+
+function solution(s, n) {
+    let answer = [];
+    for(let i =0; i< s.length; i++){
+            let asc = s.charCodeAt(i);
+            let nasc = s.charCodeAt(i) + n;
+            if(asc < 91 && nasc > 90){
+                while(nasc > 90){
+                    nasc -= 26
+                }
+            } else if (asc > 96 && nasc > 122){
+                while(nasc > 122){
+                    nasc -= 26
+                }
+            } else if (asc == 32){
+                nasc = ' ';
+            }
+            answer.push(nasc)
+        }
+            return answer.map((value) => value == ' ' ? ' ' : String.fromCharCode(value)).join('')
+        }
+
+---------------------------------------------------------------
+#24 신규아이디 생성
+
+function solution(new_id) {
+    var answer = new_id.toLowerCase().replace(/[^a-z0-9._-]/g,'').replace(/\.+/g, '.').replace(/^\.|\.$/g, '').replace(/^$/, 'a').slice(0,15).replace(/\.$/g, '')
+    if(answer.length == 1){answer = answer.repeat(3)};
+    if(answer.length == 2){answer = answer+answer[answer.length-1]};
+    return answer;
+}
 
 
