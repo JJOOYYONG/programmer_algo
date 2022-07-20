@@ -570,10 +570,40 @@ function solution(n) {
     return answer;
 }
 ---------------------------------------------------------------
-#40 
+#40 크레인 인형뽑기 게임
+
+function solution(board, moves) {
+    let answer = [];
+    moves = moves.map((value) => value-1)
+    for(let x = 0; x < moves.length; x++){
+        for(let y = 0; y < board.length; y++){
+            if(moves[x] == y){
+                for(let k = 0; k < board.length; k++){
+                    if(board[k][y] !== 0){
+                        answer.push(board[k][y])
+                        board[k][y] = 0
+                        break;
+                    }
+                }
+            }
+        }
+    }        
+    console.log(answer)
+    let count = 0;
+    for(let i = 0; i < answer.length; i++){
+        if(i == answer.length){
+          return count;  
+        } else if(answer[i] == answer[i+1]){
+            answer.splice(i, 2)
+            count += 2;
+            i = 0;
+        }
+    }
+    return count
+}
+
+
 
 ---------------------------------------------------------------
-#25 약수의 개수와 덧셈
 
----------------------------------------------------------------
 
