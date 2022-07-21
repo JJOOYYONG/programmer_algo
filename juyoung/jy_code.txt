@@ -810,3 +810,5 @@ function solution(n) {
     chek(1);
     return answer;
 }
+.................
+#.40 크레인
