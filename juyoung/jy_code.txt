@@ -810,3 +810,6 @@ function solution(n) {
     chek(1);
     return answer;
 }
+.................
+#.40 크레인
+커커커커커컼밋
