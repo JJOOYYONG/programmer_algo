@@ -694,4 +694,119 @@ function solution(numbers, hand) {
     return answer;
 }
 .......................
-#31
+#37
+.......................
+#38
+.......................
+#39
+//for문
+function solution(n) {
+    var answer = 0;
+    let sum = 0;
+    function chek(start){
+        if(start > n) return;
+        var sum = 0;
+        for(var i=start; i<=n; i++){
+            sum += i;
+            if(sum == n){
+                answer++;
+                break;
+            }else if(sum > n){
+                break;
+            }
+        }
+        chek(start+1);
+    }
+    chek(1);
+    return answer;
+}
+
+//정수론
+function solution(n) {
+    var answer = 0;
+    //연속된 자연수들로 n을 표현하는 방법의 수는 n의 약수이면서 홀수인 값과 같다.
+    //홀수는 n 과 n+1로 표현가능
+    for(let i=0;i<=n;i++){
+        if(n%i==0&&i%2==1){
+            answer++;
+        }
+    }
+    return answer;
+}
+.................................
+#37 다트게임
+function solution(dartResult) {
+    var answer = 0;
+    
+    let pow_num = [{"S":1,"D":2,"T":3}];
+    dartResult = dartResult.split("").map((a,i)=>{
+        if(a=="S"||a=="D"||a=="T"){
+            let num =pow_num[0][a];
+            return Math.pow(dartResult[i-1],num);
+        }
+        if(a=="*"){
+            return "*";   
+        }else{
+            return 0;
+        }
+    });
+    
+    answer=dartResult.reduce((a,b)=>{
+        if(b == "*"){
+            a*2+b*2
+        }a+b});
+    return answer;
+}
+///
+function solution(dartResult) {
+    const object = {
+        "S": 1,
+        "D": 2,
+        "T": 3,
+        "*": 2,
+        "#": -1,
+        'undefined': 1
+    }
+   let darts = dartResult.match(/\d.?\D/g)
+    
+   for(let i = 0; i<darts.length; i++) {
+       const dart = darts[i].match(/(\d{1,})(\S|D|T)(\*|#)?/)
+        const score = Math.pow(dart[1], object[dart[2]]) * object[dart[3]]
+        if(darts[i-1] && dart[3] === '*') {
+            darts[i-1] *= object['*']
+        }
+        darts[i] = score;
+   }
+    return darts.reduce((a, b) => a + b);
+}
+..............
+#.38 최대값 최소값
+function solution(s) {
+    var answer = '';
+    let aa= s.split(" ");
+    answer = Math.min(...aa)+" "+Math.max(...aa);
+    
+    return answer;
+}
+...........................
+#.39 숫자의 표현
+function solution(n) {
+    var answer = 0;
+    let sum = 0;
+    function chek(start){
+        if(start > n) return;
+        var sum = 0;
+        for(var i=start; i<=n; i++){
+            sum += i;
+            if(sum == n){
+                answer++;
+                break;
+            }else if(sum > n){
+                break;
+            }
+        }
+        chek(start+1);
+    }
+    chek(1);
+    return answer;
+}
